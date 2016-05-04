@@ -1,6 +1,6 @@
 {
   "name": "remark-api-client-node",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Library for Node.js projects to access Remark API",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,16 @@
     "url": "git+https://github.com/alterego-labs/remark-api-client-node.git"
   },
   "author": "Sergey Gernyak <sergeg1990@gmail.com>",
+  "contributors": [
+    {
+      "name": "Sergey Gernyak",
+      "email": "sergeg1990@gmail.com"
+    },
+    {
+      "name": "Viktor Tomilin",
+      "email": "caballerosolar@gmail.com"
+    }
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/alterego-labs/remark-api-client-node/issues"

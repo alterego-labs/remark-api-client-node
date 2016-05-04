@@ -1,3 +1,5 @@
-import RemarkAuth from './src/Auth';
+var RemarkApiClient = {
+  get AuthApiGateway() { return require('./src/AuthApiGateway'); }
+}
 
-export RemarkAuth;
+module.exports = RemarkApiClient;

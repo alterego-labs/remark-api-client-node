@@ -1,7 +1,7 @@
 // let config = require('config');
 import 'whatwg-fetch';
 
-export default class API {
+export default class APIGateway {
   constructor() {
   }
 
