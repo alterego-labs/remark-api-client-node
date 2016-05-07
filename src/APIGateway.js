@@ -44,10 +44,10 @@ export default class APIGateway {
     });
   }
 
-  postRequestTo(path, params) {
+  requestTo(type, path, params) {
     let url = this.getUrl(path, params);
     return fetch(url, {
-      method: 'POST',
+      method: type,
       body: JSON.stringify(params),
       headers: {
         'Content-Type': 'application/json',
@@ -63,5 +63,13 @@ export default class APIGateway {
         throw error;
       }
     });
+  }
+
+  postRequestTo(path, params) {
+    return this.requestTo('POST', path, params);
+  }
+
+  putRequestTo(path, params) {
+    return this.requestTo('PUT', path, params);
   }
 }
