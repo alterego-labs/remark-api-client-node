@@ -1,4 +1,4 @@
-import API from './APIGateway';
+import APIGateway from './APIGateway';
 
 class RemarksApiGateway extends APIGateway {
   constructor() {
