@@ -18,7 +18,7 @@ $ npm install alterego-labs/remark-api-client-node --save
 To be able to make requests to the login endpoint add the following line into the file in which you want to do that:
 
 ```javascript
-import {AuthApiGateway} from 'remark-api-client-node';
+import { AuthApiGateway } from 'remark-api-client-node';
 ```
 
 And then you can run request and process responses something like this:
@@ -31,5 +31,21 @@ AuthApiGateway.login(this.serialize()).then((response) => {
   return response;
 }).catch(function(ex) {
   return ex.response;
+});
+```
+
+### Send push token
+
+Import appropriate class:
+
+```javascript
+import { UsersApiGateway } from 'remark-api-client-node';
+```
+
+Example of the common usage:
+
+```javascript
+UsersApiGateway.sendPushToken('sergio', {
+  type: 'android', value: 'asdsada'
 });
 ```
