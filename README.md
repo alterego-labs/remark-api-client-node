@@ -24,7 +24,7 @@ import { AuthApiGateway } from 'remark-api-client-node';
 And then you can run request and process responses something like this:
 
 ```javascript
-AuthApiGateway.login({ user: { login: 'SomeUser001' } })
+AuthApiGateway.login({ login: 'SomeUser001' })
   .then((response_json) => {
     Store.dispatch(receiveAccessToken(response_json.data.user));
     return response_json;

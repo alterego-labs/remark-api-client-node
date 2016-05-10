@@ -11,8 +11,10 @@ class UsersApiGateway extends APIGateway {
    * UsersApiGateway.sendPushToken('sergio', {
    *   type: 'android', value: 'asdsada'
    * });
-   * @param {string} login
-   * @param {object} params - object with parameters: `type`, `value`
+   * @param {String} login
+   * @param {Object} params - object with parameters
+   * @param {String} params.type - A type of a push token
+   * @param {String} params.value - A value of a push token
    */
   sendPushToken(login, params) {
     return this.postRequestTo('users/' + login + '/token', { token: params });
