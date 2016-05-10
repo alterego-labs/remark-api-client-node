@@ -1,4 +1,4 @@
-import 'whatwg-fetch';
+var fetch = require('node-fetch');
 
 export default class APIGateway {
   constructor() {
@@ -52,22 +52,9 @@ export default class APIGateway {
 
   requestTo(type, path, params) {
     let url = this.getUrl(path, params);
-    return fetch(url, _buildRequestOptions(type, params))
+    return fetch(url, this._buildRequestOptions(type, params))
       .then(this._parseJSON)
       .then(this._checkResponseStatus)
-    //   .then((response_json) => {
-    //     
-    //   }
-    //
-    //   .then(function (response) {
-    //   if (response.ok) {
-    //     return response.json();
-    //   } else {
-    //     var error = new Error(response.statusText);
-    //     error.response = response;
-    //     throw error;
-    //   }
-    // });
   }
 
   _buildRequestOptions(type, params) {
@@ -88,11 +75,11 @@ export default class APIGateway {
 
   _checkResponseStatus(response_json) {
     // TODO: think about, maybe, more correct mechanism to check if response success or not...
-    if (response_json.data.errors) {
-      var error = new Error(response.statusText);
+    if (response_json.data.errors != undefined) {
+      var error = new Error('');
       error.response = response_json;
-      // throw error;
-      return Promise.reject(error);
+      throw error;
+      // return Promise.reject(error);
     } else {
       return Promise.resolve(response_json);
     }

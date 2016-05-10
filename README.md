@@ -24,14 +24,14 @@ import { AuthApiGateway } from 'remark-api-client-node';
 And then you can run request and process responses something like this:
 
 ```javascript
-AuthApiGateway.login(this.serialize()).then((response) => {
-  return response;
-}).then((response) => {
-  this.setState({ errors: response.data.errors });
-  return response;
-}).catch(function(ex) {
-  return ex.response;
-});
+AuthApiGateway.login({ user: { login: 'SomeUser001' } })
+  .then((response_json) => {
+    Store.dispatch(receiveAccessToken(response_json.data.user));
+    return response_json;
+  }).catch(function(error) {
+    var response_json = error.response;
+    this.setState({ errors: response_json.data.errors });
+  });
 ```
 
 ### Send push token
