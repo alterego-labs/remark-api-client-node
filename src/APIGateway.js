@@ -1,4 +1,3 @@
-// let config = require('config');
 import 'whatwg-fetch';
 
 export default class APIGateway {
@@ -16,7 +15,6 @@ export default class APIGateway {
   }
 
   getUrl(path) {
-    // return config.API.rootPath + path;
     return 'http://remark-api.alterego-labs.com/api/v1/' + path;
   }
 
@@ -44,9 +42,36 @@ export default class APIGateway {
     });
   }
 
+  postRequestTo(path, params) {
+    return this.requestTo('POST', path, params);
+  }
+
+  putRequestTo(path, params) {
+    return this.requestTo('PUT', path, params);
+  }
+
   requestTo(type, path, params) {
     let url = this.getUrl(path, params);
-    return fetch(url, {
+    return fetch(url, _buildRequestOptions(type, params))
+      .then(this._parseJSON)
+      .then(this._checkResponseStatus)
+    //   .then((response_json) => {
+    //     
+    //   }
+    //
+    //   .then(function (response) {
+    //   if (response.ok) {
+    //     return response.json();
+    //   } else {
+    //     var error = new Error(response.statusText);
+    //     error.response = response;
+    //     throw error;
+    //   }
+    // });
+  }
+
+  _buildRequestOptions(type, params) {
+    return {
       method: type,
       body: JSON.stringify(params),
       headers: {
@@ -54,22 +79,22 @@ export default class APIGateway {
         'Accept': '*/*'
       },
       mode: 'cors'
-    }).then(function (response) {
-      if (response.ok) {
-        return response.json();
-      } else {
-        var error = new Error(response.statusText);
-        error.response = response;
-        throw error;
-      }
-    });
+    };
   }
 
-  postRequestTo(path, params) {
-    return this.requestTo('POST', path, params);
+  _parseJSON(response) {
+    return response.json();
   }
 
-  putRequestTo(path, params) {
-    return this.requestTo('PUT', path, params);
+  _checkResponseStatus(response_json) {
+    // TODO: think about, maybe, more correct mechanism to check if response success or not...
+    if (response_json.data.errors) {
+      var error = new Error(response.statusText);
+      error.response = response_json;
+      // throw error;
+      return Promise.reject(error);
+    } else {
+      return Promise.resolve(response_json);
+    }
   }
 }
