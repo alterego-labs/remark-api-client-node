@@ -1,6 +1,4 @@
-if (process.env.NODE_ENV == "test") {
-  var fetch = require('node-fetch');
-}
+import 'whatwg-fetch';
 
 export default class APIGateway {
   constructor() {

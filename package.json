@@ -27,13 +27,12 @@
   },
   "homepage": "https://github.com/alterego-labs/remark-api-client-node#readme",
   "dependencies": {
-    "node-fetch": "^1.5.2",
-    "whatwg-fetch": "^0.11.0",
-    "babel-preset-es2015": "^6.0.15",
-    "babel-core": "^6.0.0",
-    "babel-eslint": "^6.0.0"
+    "whatwg-fetch": "^0.11.0"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.0.15",
+    "babel-core": "^6.0.0",
+    "babel-eslint": "^6.0.0",
     "babel-polyfill": "^6.3.14",
     "chai-spies": "^0.7.1",
     "chai": "^3.5.0",
