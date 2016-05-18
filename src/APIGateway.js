@@ -27,9 +27,17 @@ export default class APIGateway {
       'Accept': '*/*'
     });
 
-    return new Request(url, {
-      headers: headers, mode: 'cors', method: method, body: params
-    });
+    var requestParams = {
+      headers: headers,
+      mode: 'cors',
+      method: method
+    }
+
+    if (method == 'POST' || method == 'PUT') {
+      requestParams.body = params
+    }
+
+    return new Request(url, requestParams);
   }
 
   getRequestTo(path, params) {
